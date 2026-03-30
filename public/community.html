@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Community — MindWell</title>
+  <meta name="description" content="Join the MindWell Shadow Chat — anonymous peer support rooms for students.">
+  <link rel="stylesheet" href="/css/global.css">
+  <link rel="stylesheet" href="/css/components.css">
+  <link rel="stylesheet" href="/css/pages.css">
+  <script src="/js/auth-guard.js"></script>
+</head>
+<body>
+
+  <div class="page-hero">
+    <div class="container">
+      <span class="badge">PEER SUPPORT</span>
+      <h1>Shadow <span class="text-gradient">Chat</span> 👻</h1>
+      <p>Talk anonymously, support each other, and share openly — your identity is your choice.</p>
+    </div>
+  </div>
+
+  <div class="page-content">
+    <section class="section">
+      <div class="container">
+        <div class="community-layout">
+
+          <!-- Room List -->
+          <div class="dash-card" style="height:fit-content;">
+            <h4 style="font-size:0.9rem; margin-bottom:var(--space-md); color:var(--text-muted);">ROOMS</h4>
+            <div class="room-list" id="roomList">
+              <button class="room-btn active" data-room="general" onclick="switchRoom('general', this)">💬 General</button>
+              <button class="room-btn" data-room="venting" onclick="switchRoom('venting', this)">🌪️ Venting</button>
+              <button class="room-btn" data-room="study" onclick="switchRoom('study', this)">📚 Study</button>
+              <button class="room-btn" data-room="motivation" onclick="switchRoom('motivation', this)">🌟 Motivation</button>
+              <button class="room-btn" data-room="wellness" onclick="switchRoom('wellness', this)">🧘 Wellness</button>
+            </div>
+          </div>
+
+          <!-- Chat Area -->
+          <div class="chat-area">
+            <div class="chat-header">
+              <div>
+                <h3 id="roomTitle" style="font-size:1rem; margin-bottom:0;">💬 General</h3>
+                <span style="font-size:0.8rem; color:var(--text-muted);">A safe space for open conversation</span>
+              </div>
+              <div class="shadow-toggle">
+                <input type="checkbox" id="shadowMode" checked>
+                <span>👻 Shadow Mode</span>
+              </div>
+            </div>
+
+            <div class="chat-messages" id="chatMessages">
+              <div class="empty-state">
+                <div class="empty-icon">💬</div>
+                <h3>Start the conversation</h3>
+                <p>No messages yet. Be the first to share!</p>
+              </div>
+            </div>
+
+            <div class="chat-input-area">
+              <input type="text" id="chatInput" placeholder="Type a message..." onkeydown="if(event.key==='Enter')sendMessage()">
+              <button class="btn btn-primary btn-sm" onclick="sendMessage()">Send</button>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <script src="/js/main.js"></script>
+  <script src="/js/community.js"></script>
+</body>
+</html>

@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Resources — MindWell</title>
+  <meta name="description" content="Explore mental health resources, guides, and articles curated for students.">
+  <link rel="stylesheet" href="/css/global.css">
+  <link rel="stylesheet" href="/css/components.css">
+  <link rel="stylesheet" href="/css/pages.css">
+</head>
+<body>
+
+  <div class="page-hero">
+    <div class="container">
+      <span class="badge">LEARN & GROW</span>
+      <h1>Mental Health <span class="text-gradient">Resources</span></h1>
+      <p>Curated guides, articles, and strategies to help you navigate student life with resilience.</p>
+    </div>
+  </div>
+
+  <div class="page-content">
+    <section class="section">
+      <div class="container">
+
+        <div class="resource-categories reveal" id="resourceFilters">
+          <button class="resource-cat-btn active" data-filter="all">All</button>
+          <button class="resource-cat-btn" data-filter="anxiety">Anxiety</button>
+          <button class="resource-cat-btn" data-filter="stress">Stress</button>
+          <button class="resource-cat-btn" data-filter="sleep">Sleep</button>
+          <button class="resource-cat-btn" data-filter="relationships">Relationships</button>
+          <button class="resource-cat-btn" data-filter="study tips">Study Tips</button>
+        </div>
+
+        <div class="card-grid" id="resourceGrid">
+          <div class="card resource-card reveal delay-1" data-category="stress">
+            <span class="tag green">Stress Management</span>
+            <h3>5 Breathing Techniques That Actually Work</h3>
+            <p>Learn science-backed breathing exercises you can do anywhere — in class, before exams, or at 3am when you can't sleep.</p>
+            <span class="read-time">📖 5 min read</span>
+          </div>
+
+          <div class="card resource-card reveal delay-2" data-category="anxiety">
+            <span class="tag purple">Anxiety</span>
+            <h3>Understanding Exam Anxiety: A Student's Guide</h3>
+            <p>Why does your mind go blank during tests? Here's the science behind exam anxiety and practical strategies to overcome it.</p>
+            <span class="read-time">📖 8 min read</span>
+          </div>
+
+          <div class="card resource-card reveal delay-3" data-category="sleep">
+            <span class="tag">Sleep</span>
+            <h3>The College Student's Sleep Hygiene Handbook</h3>
+            <p>Yes, you CAN get 7 hours of sleep in college. Here's how to optimize your sleep schedule around a busy student life.</p>
+            <span class="read-time">📖 6 min read</span>
+          </div>
+
+          <div class="card resource-card reveal delay-4" data-category="study tips">
+            <span class="tag yellow">Study Tips</span>
+            <h3>Pomodoro + Mindfulness: The Ultimate Study Combo</h3>
+            <p>Combine focused study sessions with micro-meditations for better retention and less burnout.</p>
+            <span class="read-time">📖 4 min read</span>
+          </div>
+
+          <div class="card resource-card reveal delay-5" data-category="relationships">
+            <span class="tag green">Relationships</span>
+            <h3>Setting Boundaries Without Losing Friends</h3>
+            <p>A guide to healthy communication, saying no, and maintaining relationships while protecting your mental space.</p>
+            <span class="read-time">📖 7 min read</span>
+          </div>
+
+          <div class="card resource-card reveal" data-category="anxiety">
+            <span class="tag purple">Anxiety</span>
+            <h3>Social Anxiety in College: You're Not Alone</h3>
+            <p>How to manage social anxiety in lectures, group projects, and campus events — practical tools that really help.</p>
+            <span class="read-time">📖 6 min read</span>
+          </div>
+
+          <div class="card resource-card reveal" data-category="stress">
+            <span class="tag green">Stress Management</span>
+            <h3>The 5-4-3-2-1 Grounding Technique</h3>
+            <p>A powerful sensory grounding method to calm your nervous system in under 2 minutes during stressful moments.</p>
+            <span class="read-time">📖 3 min read</span>
+          </div>
+
+          <div class="card resource-card reveal" data-category="sleep">
+            <span class="tag">Sleep</span>
+            <h3>Screen Time & Sleep: Breaking the Late-Night Scroll</h3>
+            <p>How blue light and doom-scrolling destroy your sleep, and simple habits to break the cycle tonight.</p>
+            <span class="read-time">📖 5 min read</span>
+          </div>
+
+          <div class="card resource-card reveal" data-category="anxiety">
+            <span class="tag purple">Anxiety</span>
+            <h3>Panic Attacks 101: What They Are & What to Do</h3>
+            <p>Recognize the signs of a panic attack and learn step-by-step techniques to regain control quickly.</p>
+            <span class="read-time">📖 7 min read</span>
+          </div>
+
+          <div class="card resource-card reveal" data-category="study tips">
+            <span class="tag yellow">Study Tips</span>
+            <h3>Active Recall: Study Smarter, Not Harder</h3>
+            <p>Ditch the highlighter. Learn how active recall and spaced repetition can 3x your retention with less time studying.</p>
+            <span class="read-time">📖 5 min read</span>
+          </div>
+
+          <div class="card resource-card reveal" data-category="relationships">
+            <span class="tag green">Relationships</span>
+            <h3>Navigating Roommate Conflicts With Grace</h3>
+            <p>Practical conflict resolution strategies for shared living spaces — from noise issues to cleaning schedules.</p>
+            <span class="read-time">📖 4 min read</span>
+          </div>
+
+          <div class="card resource-card reveal" data-category="stress">
+            <span class="tag green">Stress Management</span>
+            <h3>Progressive Muscle Relaxation for Students</h3>
+            <p>A simple body-scan relaxation technique you can do at your desk to release tension in under 10 minutes.</p>
+            <span class="read-time">📖 4 min read</span>
+          </div>
+        </div>
+
+        <div class="empty-state" id="noResults" style="display:none;">
+          <div class="empty-icon">🔍</div>
+          <h3>No resources found</h3>
+          <p>Try selecting a different category.</p>
+        </div>
+
+      </div>
+    </section>
+  </div>
+
+  <script src="/js/main.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const filters = document.getElementById('resourceFilters');
+      const grid = document.getElementById('resourceGrid');
+      const cards = grid.querySelectorAll('.resource-card');
+      const noResults = document.getElementById('noResults');
+
+      filters.addEventListener('click', (e) => {
+        const btn = e.target.closest('.resource-cat-btn');
+        if (!btn) return;
+
+        // Update active button
+        filters.querySelectorAll('.resource-cat-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+
+        const filter = btn.dataset.filter.toLowerCase();
+        let visibleCount = 0;
+
+        cards.forEach(card => {
+          const category = card.dataset.category.toLowerCase();
+          if (filter === 'all' || category === filter) {
+            card.style.display = '';
+            card.classList.add('active');
+            visibleCount++;
+          } else {
+            card.style.display = 'none';
+            card.classList.remove('active');
+          }
+        });
+
+        noResults.style.display = visibleCount === 0 ? 'block' : 'none';
+      });
+    });
+  </script>
+</body>
+</html>

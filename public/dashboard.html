@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard — MindWell</title>
+  <meta name="description" content="Your personal MindWell dashboard — mood tracking, stress sharing, wellness tools, and gamification.">
+  <link rel="stylesheet" href="/css/global.css">
+  <link rel="stylesheet" href="/css/components.css">
+  <link rel="stylesheet" href="/css/pages.css">
+  <script src="/js/auth-guard.js"></script>
+</head>
+<body>
+
+  <div class="page-hero">
+    <div class="container">
+      <span class="badge">YOUR SPACE</span>
+      <h1>Welcome back, <span class="text-gradient" id="dashDisplayName">Student</span> 👋</h1>
+      <p>Track your mood, share what's stressing you, and keep building healthy habits.</p>
+    </div>
+  </div>
+
+  <div class="page-content">
+    <section class="section">
+      <div class="container">
+        <div class="dash-grid">
+
+          <!-- ── Main Column ──────────────────────────────── -->
+          <div class="dash-main">
+
+            <!-- Mood Check-in -->
+            <div class="dash-card reveal">
+              <h3>😊 Daily Mood Check-In</h3>
+              <div class="mood-selector" id="moodSelector">
+                <div class="mood-option" data-score="1" data-emoji="😢" onclick="selectMood(this)">
+                  <span class="emoji">😢</span>
+                  <span class="label">Awful</span>
+                </div>
+                <div class="mood-option" data-score="2" data-emoji="😟" onclick="selectMood(this)">
+                  <span class="emoji">😟</span>
+                  <span class="label">Bad</span>
+                </div>
+                <div class="mood-option" data-score="3" data-emoji="😐" onclick="selectMood(this)">
+                  <span class="emoji">😐</span>
+                  <span class="label">Okay</span>
+                </div>
+                <div class="mood-option" data-score="4" data-emoji="😊" onclick="selectMood(this)">
+                  <span class="emoji">😊</span>
+                  <span class="label">Good</span>
+                </div>
+                <div class="mood-option" data-score="5" data-emoji="🤩" onclick="selectMood(this)">
+                  <span class="emoji">🤩</span>
+                  <span class="label">Great</span>
+                </div>
+              </div>
+              <div class="form-group">
+                <input type="text" id="moodNote" class="form-input" placeholder="Add a note (optional)...">
+              </div>
+              <button class="btn btn-primary" onclick="submitMood()" id="moodSubmitBtn">Record Mood →</button>
+            </div>
+
+            <!-- Mood Chart -->
+            <div class="dash-card reveal">
+              <h3>📈 Mood History (Last 30 Days)</h3>
+              <div class="chart-container">
+                <canvas id="moodChart"></canvas>
+              </div>
+            </div>
+
+            <!-- Stress Sharing -->
+            <div class="dash-card reveal">
+              <h3>🎯 Share What's Stressing You</h3>
+              <div class="stress-form">
+                <label style="font-size:0.9rem; font-weight:600;">Category</label>
+                <div class="stress-categories" id="stressCategories">
+                  <button class="stress-cat" data-cat="exams" onclick="selectStressCat(this)">📚 Exams</button>
+                  <button class="stress-cat" data-cat="social" onclick="selectStressCat(this)">👥 Social</button>
+                  <button class="stress-cat" data-cat="family" onclick="selectStressCat(this)">👨‍👩‍👧 Family</button>
+                  <button class="stress-cat" data-cat="financial" onclick="selectStressCat(this)">💰 Financial</button>
+                  <button class="stress-cat" data-cat="health" onclick="selectStressCat(this)">🏥 Health</button>
+                  <button class="stress-cat" data-cat="workload" onclick="selectStressCat(this)">⚡ Workload</button>
+                  <button class="stress-cat" data-cat="other" onclick="selectStressCat(this)">🔮 Other</button>
+                </div>
+
+                <label style="font-size:0.9rem; font-weight:600;">Intensity: <span id="intensityValue">5</span>/10</label>
+                <input type="range" class="intensity-slider" id="intensitySlider" min="1" max="10" value="5" oninput="document.getElementById('intensityValue').textContent=this.value">
+
+                <div class="form-group" style="margin-bottom:0;">
+                  <textarea id="stressDesc" class="form-input" rows="2" placeholder="Tell us more (optional)..."></textarea>
+                </div>
+
+                <div style="display:flex; align-items:center; gap:var(--space-md);">
+                  <button class="btn btn-primary" onclick="submitStress()">Share & Get Help →</button>
+                  <label style="display:flex; align-items:center; gap:var(--space-xs); font-size:0.85rem; color:var(--text-muted); cursor:pointer;">
+                    <input type="checkbox" id="stressAnonymous"> Share anonymously
+                  </label>
+                </div>
+              </div>
+            </div>
+
+            <!-- Activity History List -->
+            <div class="dash-card reveal">
+              <h3>📜 Recent Activity History</h3>
+              <div id="userActivityList" style="max-height: 400px; overflow-y: auto;">
+                <p class="empty-state">Loading your activity history...</p>
+              </div>
+            </div>
+
+            <!-- AI Suggestions -->
+            <div class="dash-card reveal" id="suggestionsCard" style="display:none;">
+              <h3>💡 Personalized Suggestions</h3>
+              <div class="suggestions-list" id="suggestionsList"></div>
+            </div>
+          </div>
+
+          <!-- ── Sidebar ──────────────────────────────────── -->
+          <div class="dash-sidebar">
+            <!-- Support Notice Card -->
+            <div class="dash-card reveal" id="supportNoticeCard" style="display:none; border:2px solid var(--primary); background:var(--primary-bg);">
+              <h3 style="color:var(--primary); margin-bottom:var(--space-xs);">🛡️ Admin Support Received</h3>
+              <p style="font-size:0.9rem; margin-bottom:var(--space-md);" id="supportNoteText"></p>
+              <button class="btn btn-sm btn-primary" onclick="this.parentElement.style.display='none'">Got it!</button>
+            </div>
+
+            <!-- Gamification -->
+            <div class="dash-card reveal">
+              <h3>🏆 Your Progress</h3>
+              <div style="text-align:center; margin-bottom:var(--space-md);">
+                <div style="font-size:2.5rem; font-weight:800; font-family:var(--font-heading);" class="text-gradient" id="userLevel">Lv. 1</div>
+                <div style="font-size:0.85rem; color:var(--text-muted);">
+                  <span id="userXp">0</span> XP
+                </div>
+              </div>
+              <div class="progress-bar-container">
+                <div class="progress-bar-fill" id="xpBar" style="width:0%"></div>
+              </div>
+              <div style="display:flex; justify-content:space-between; font-size:0.8rem; color:var(--text-muted); margin-bottom:var(--space-md);">
+                <span>Level <span id="currentLevel">1</span></span>
+                <span>Level <span id="nextLevel">2</span></span>
+              </div>
+
+              <div style="display:flex; justify-content:space-around; text-align:center; margin-bottom:var(--space-md); padding:var(--space-md) 0; border-top:1px solid var(--border-light); border-bottom:1px solid var(--border-light);">
+                <div>
+                  <div style="font-size:1.3rem; font-weight:700;" id="streakDays">0</div>
+                  <div style="font-size:0.75rem; color:var(--text-muted);">🔥 Streak</div>
+                </div>
+                <div>
+                  <div style="font-size:1.3rem; font-weight:700;" id="totalCheckins">0</div>
+                  <div style="font-size:0.75rem; color:var(--text-muted);">📊 Check-ins</div>
+                </div>
+              </div>
+
+              <h4 style="font-size:0.9rem; margin-bottom:var(--space-sm);">Badges</h4>
+              <div class="badges-grid" id="badgesGrid">
+                <div class="badge-item">🔥 3-Day Streak</div>
+                <div class="badge-item">🔥 7-Day Streak</div>
+                <div class="badge-item">🔥 30-Day Streak</div>
+                <div class="badge-item">⭐ 100 XP</div>
+                <div class="badge-item">⭐ 500 XP</div>
+              </div>
+            </div>
+
+            <!-- Breathing Exercise -->
+            <div class="dash-card reveal">
+              <h3>🧘 Breathing Exercise</h3>
+              <div class="breathing-circle" id="breathCircle">Breathe</div>
+              <div style="text-align:center;">
+                <button class="btn btn-sm btn-accent" onclick="startBreathing()" id="breathBtn">Start 4-7-8</button>
+              </div>
+            </div>
+
+            <!-- Pomodoro Timer -->
+            <div class="dash-card reveal">
+              <h3>⏱️ Pomodoro Timer</h3>
+              <div class="pomodoro-display">
+                <div class="pomodoro-time" id="pomodoroTime">25:00</div>
+                <div style="font-size:0.85rem; color:var(--text-muted);" id="pomodoroLabel">Focus Time</div>
+              </div>
+              <div class="pomodoro-controls">
+                <button class="btn btn-sm btn-primary" onclick="togglePomodoro()" id="pomodoroBtn">Start</button>
+                <button class="btn btn-sm btn-ghost" onclick="resetPomodoro()">Reset</button>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+  <script src="/js/main.js"></script>
+  <script src="/js/dashboard.js"></script>
+</body>
+</html>

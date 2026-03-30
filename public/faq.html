@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FAQs &mdash; MindWell</title>
+  <meta name="description" content="Frequently Asked Questions about MindWell.">
+  <link rel="stylesheet" href="/css/global.css">
+  <link rel="stylesheet" href="/css/components.css">
+  <link rel="stylesheet" href="/css/pages.css">
+  <style>
+    .faq-container {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-md);
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    .faq-item {
+      background: var(--surface);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-sm);
+      overflow: hidden;
+      border: 1px solid var(--border);
+      transition: all var(--transition-base);
+    }
+    .faq-item:hover {
+      box-shadow: var(--shadow-md);
+      border-color: var(--primary-light);
+    }
+    .faq-item summary {
+      padding: var(--space-lg);
+      font-weight: 600;
+      font-size: 1.1rem;
+      color: var(--text);
+      cursor: pointer;
+      list-style: none;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .faq-item summary::-webkit-details-marker {
+      display: none;
+    }
+    .faq-item summary::after {
+      content: '+';
+      font-size: 1.8rem;
+      line-height: 1;
+      font-weight: 300;
+      color: var(--primary);
+      transition: transform var(--transition-base);
+    }
+    .faq-item[open] summary::after {
+      transform: rotate(45deg);
+    }
+    .faq-answer {
+      padding: 0 var(--space-lg) var(--space-lg);
+      color: var(--text-secondary);
+      line-height: 1.6;
+    }
+  </style>
+</head>
+<body>
+  
+  <header class="page-hero">
+    <div class="container" style="text-align:center;">
+      <h1 class="reveal">Frequently Asked Questions</h1>
+      <p class="reveal" style="max-width:600px; margin:0 auto; opacity:0.9;">Everything you need to know about navigating the MindWell platform.</p>
+    </div>
+  </header>
+
+  <main class="page-content" style="padding-bottom:var(--space-4xl);">
+    <div class="container reveal">
+      <div class="faq-container">
+        
+        <details class="faq-item" open>
+          <summary>Is MindWell totally free for students?</summary>
+          <div class="faq-answer">
+            Yes! MindWell is fundamentally built to be accessible. Core tools like mood tracking, anonymous community spaces, and journaling are 100% free for anyone with a valid university email address.
+          </div>
+        </details>
+        
+        <details class="faq-item">
+          <summary>How does the "Shadow Mode" feature work?</summary>
+          <div class="faq-answer">
+            Shadow Mode is our high-privacy toggle. When turned on, your posts or interactions are completely anonymized before entering the community. No identifying metadata is attached, allowing you to discuss sensitive topics—like extreme exam anxiety—without fear of judgment.
+          </div>
+        </details>
+        
+        <details class="faq-item">
+          <summary>Can I sync MindWell with my coursework deadline calendars?</summary>
+          <div class="faq-answer">
+            Absolutely. You can securely integrate select student portals or calendar apps to correlate your academic deadlines with your mental wellness patterns. MindWell's AI then visually maps these periods and suggests micro-breaks right when your schedule looks heavy.
+          </div>
+        </details>
+
+        <details class="faq-item">
+          <summary>Is my data sold to third parties or university staff?</summary>
+          <div class="faq-answer">
+            Never. Your mental health metrics are rigorously encrypted, fully private, and under your absolute control. We do not sell your data, nor do we share identifiable trends with your university administrators without explicit, opt-in consent.
+          </div>
+        </details>
+
+        <details class="faq-item">
+          <summary>What if I need professional psychiatric help immediately?</summary>
+          <div class="faq-answer">
+            MindWell is designed as an everyday preventative wellness tool, not a crisis line. If you are experiencing a severe mental health crisis or emergency, we provide a permanent "Get Help Now" lifeline in the app that links directly to 24/7 localized professional hotlines.
+          </div>
+        </details>
+
+      </div>
+    </div>
+  </main>
+
+  <script src="/js/api.js"></script>
+  <script src="/js/main.js"></script>
+</body>
+</html>

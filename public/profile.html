@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Profile — MindWell</title>
+  <meta name="description" content="Manage your MindWell profile, preferences, and view your wellness stats.">
+  <link rel="stylesheet" href="/css/global.css">
+  <link rel="stylesheet" href="/css/components.css">
+  <link rel="stylesheet" href="/css/pages.css">
+  <script src="/js/auth-guard.js"></script>
+</head>
+<body>
+
+  <div class="page-hero">
+    <div class="container">
+      <span class="badge">YOUR PROFILE</span>
+      <h1>Hey, <span class="text-gradient" id="profileName">Student</span> 👤</h1>
+      <p>Customize your profile, track your progress, and manage your preferences.</p>
+    </div>
+  </div>
+
+  <div class="page-content">
+    <section class="section">
+      <div class="container">
+        <div class="profile-grid">
+
+          <!-- Sidebar -->
+          <div class="profile-sidebar">
+            <div class="profile-avatar-section reveal">
+              <div class="profile-avatar">
+                <img src="/assets/default-avatar.svg" alt="avatar" id="profileAvatar">
+              </div>
+              <h3 id="profileDisplayName" style="margin-bottom: var(--space-xs);">Student</h3>
+              <p style="font-size:0.85rem;" id="profileEmail">student@email.com</p>
+              <p style="font-size:0.8rem; color:var(--text-muted); margin-top:var(--space-xs);">Member since <span id="profileJoined">2024</span></p>
+            </div>
+
+            <div class="profile-stats-card reveal">
+              <h4 style="font-size:0.9rem; margin-bottom:var(--space-md);">📊 Your Stats</h4>
+              <div class="profile-stat-row">
+                <span class="label">Level</span>
+                <span class="value" id="pLevel">1</span>
+              </div>
+              <div class="profile-stat-row">
+                <span class="label">Total XP</span>
+                <span class="value" id="pXp">0</span>
+              </div>
+              <div class="profile-stat-row">
+                <span class="label">Streak</span>
+                <span class="value" id="pStreak">0 days</span>
+              </div>
+              <div class="profile-stat-row">
+                <span class="label">Check-ins</span>
+                <span class="value" id="pCheckins">0</span>
+              </div>
+              <div class="profile-stat-row">
+                <span class="label">Avg Mood</span>
+                <span class="value" id="pAvgMood">-</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Main -->
+          <div class="profile-main">
+            <div class="dash-card reveal">
+              <h3>✏️ Edit Profile</h3>
+              <form onsubmit="updateProfile(event)">
+                <div class="form-group">
+                  <label for="editDisplayName">Display Name</label>
+                  <input type="text" id="editDisplayName" class="form-input" placeholder="Your display name">
+                </div>
+                <div class="form-group">
+                  <label for="editBio">Bio</label>
+                  <textarea id="editBio" class="form-input" rows="3" placeholder="Tell us about yourself..."></textarea>
+                </div>
+                <div class="form-group">
+                  <label for="editTheme">Theme Preference</label>
+                  <select id="editTheme" class="form-input">
+                    <option value="light">☀️ Light Mode</option>
+                    <option value="dark">🌙 Dark Mode</option>
+                  </select>
+                </div>
+                <button type="submit" class="btn btn-primary">Save Changes →</button>
+              </form>
+            </div>
+
+            <div class="dash-card reveal">
+              <h3>🛡️ Account Info</h3>
+              <div class="profile-stat-row">
+                <span class="label">Username</span>
+                <span class="value" id="pUsername">-</span>
+              </div>
+              <div class="profile-stat-row">
+                <span class="label">Email</span>
+                <span class="value" id="pEmailInfo">-</span>
+              </div>
+              <div class="profile-stat-row">
+                <span class="label">Role</span>
+                <span class="value" id="pRole">User</span>
+              </div>
+            </div>
+
+            <div class="dash-card reveal" style="border-color:rgba(239,68,68,0.2);">
+              <h3>🚪 Session</h3>
+              <p style="margin-bottom:var(--space-md);">Logging out will clear your session. You can always log back in.</p>
+              <button class="btn btn-sm" style="background:var(--danger); color:white;" onclick="logout()">Log Out</button>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <script src="/js/main.js"></script>
+  <script src="/js/profile.js"></script>
+</body>
+</html>

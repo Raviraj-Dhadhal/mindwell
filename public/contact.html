@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact — MindWell</title>
+  <meta name="description" content="Get in touch with the MindWell team. We'd love to hear from you.">
+  <link rel="stylesheet" href="/css/global.css">
+  <link rel="stylesheet" href="/css/components.css">
+  <link rel="stylesheet" href="/css/pages.css">
+</head>
+<body>
+
+  <div class="page-hero">
+    <div class="container">
+      <span class="badge">GET IN TOUCH</span>
+      <h1>Contact <span class="text-gradient">Us</span></h1>
+      <p>Have questions, feedback, or just want to say hi? We'd love to hear from you.</p>
+    </div>
+  </div>
+
+  <div class="page-content">
+    <section class="section">
+      <div class="container">
+        <div class="contact-grid">
+
+          <div>
+            <h2 class="reveal">We're Here to <span class="text-gradient">Help</span></h2>
+            <p class="reveal" style="margin-bottom:var(--space-2xl);">Whether you have a feature request, found a bug, or need support — reach out anytime.</p>
+
+            <div class="contact-info-cards">
+              <div class="contact-info-card reveal delay-1">
+                <div class="icon">📧</div>
+                <div>
+                  <h4>Email</h4>
+                  <p>hello@mindwell.app</p>
+                </div>
+              </div>
+              <div class="contact-info-card reveal delay-2">
+                <div class="icon">💬</div>
+                <div>
+                  <h4>Community</h4>
+                  <p>Join our Shadow Chat for peer support</p>
+                </div>
+              </div>
+              <div class="contact-info-card reveal delay-3">
+                <div class="icon">🕐</div>
+                <div>
+                  <h4>Response Time</h4>
+                  <p>We typically respond within 24 hours</p>
+                </div>
+              </div>
+              <div class="contact-info-card reveal delay-4">
+                <div class="icon">🆘</div>
+                <div>
+                  <h4>Crisis Support</h4>
+                  <p>If you're in crisis, please call 988 (Suicide & Crisis Lifeline) or text HOME to 741741</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="contact-form reveal-right" id="contactForm">
+            <h3 style="margin-bottom:var(--space-xl);">Send Us a Message</h3>
+            <form onsubmit="handleContactSubmit(event)">
+              <div class="form-group">
+                <label for="contactName">Your Name</label>
+                <input type="text" id="contactName" class="form-input" placeholder="Anya Sharma" required>
+              </div>
+              <div class="form-group">
+                <label for="contactEmail">Email</label>
+                <input type="email" id="contactEmail" class="form-input" placeholder="you@university.edu" required>
+              </div>
+              <div class="form-group">
+                <label for="contactSubject">Subject</label>
+                <select id="contactSubject" class="form-input">
+                  <option value="general">General Question</option>
+                  <option value="feedback">Feedback</option>
+                  <option value="bug">Bug Report</option>
+                  <option value="feature">Feature Request</option>
+                  <option value="partnership">Partnership</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="contactMessage">Message</label>
+                <textarea id="contactMessage" class="form-input" rows="5" placeholder="Tell us what's on your mind..." required></textarea>
+              </div>
+              <button type="submit" class="btn btn-primary" style="width:100%;">Send Message →</button>
+            </form>
+          </div>
+
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <script src="/js/main.js"></script>
+  <script src="/js/contact.js"></script>
+</body>
+</html>

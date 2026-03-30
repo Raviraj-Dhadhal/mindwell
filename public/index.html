@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MindWell — Your Mind Matters</title>
+  <meta name="description" content="MindWell is a student-first mental health platform with AI-powered mood tracking, anonymous peer support, wellness tools, and gamification.">
+  <link rel="stylesheet" href="/css/global.css">
+  <link rel="stylesheet" href="/css/components.css">
+  <link rel="stylesheet" href="/css/home.css">
+</head>
+<body class="home-page">
+
+  <!-- ── Hero ─────────────────────────────────────────────── -->
+  <section class="hero" id="hero">
+    <div class="hero-particles">
+      <span class="particle"></span>
+      <span class="particle"></span>
+      <span class="particle"></span>
+      <span class="particle"></span>
+      <span class="particle"></span>
+      <span class="particle"></span>
+    </div>
+
+    <div class="container">
+      <div class="hero-content reveal">
+        <h1>Your Mind <span class="highlight">Matters.</span><br>Track It. Heal It. Grow.</h1>
+        <p class="hero-subtitle">A student-first mental health platform that combines AI-powered mood tracking, anonymous peer support, and wellness tools — all in one beautiful space.</p>
+        <div class="hero-actions">
+          <a href="/login.html" class="btn btn-primary btn-lg">Get Started Free →</a>
+          <a href="/features.html" class="btn btn-secondary btn-lg" style="border-color: rgba(255,255,255,0.3); color: #F9FAFB;">See Features</a>
+        </div>
+        <div class="hero-stats">
+          <div class="hero-stat">
+            <span class="number" id="statStudents">5,000+</span>
+            <span class="label">Students</span>
+          </div>
+          <div class="hero-stat">
+            <span class="number">50,000+</span>
+            <span class="label">Check-ins</span>
+          </div>
+          <div class="hero-stat">
+            <span class="number">98%</span>
+            <span class="label">Satisfaction</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="hero-visual reveal delay-2">
+        <div class="mood-card">
+          <div class="mood-card-header">
+            <div class="avatar">🧑‍🎓</div>
+            <div class="info">
+              <h4>How are you feeling?</h4>
+              <span>Daily Check-in • Today</span>
+            </div>
+          </div>
+          <div class="mood-emojis">
+            <div class="mood-emoji" title="Very Bad">😢</div>
+            <div class="mood-emoji" title="Bad">😟</div>
+            <div class="mood-emoji" title="Okay">😐</div>
+            <div class="mood-emoji selected" title="Good">😊</div>
+            <div class="mood-emoji" title="Excellent">🤩</div>
+          </div>
+          <div class="mood-bar-container">
+            <div class="mood-bar-label">
+              <span>Stress Level</span>
+              <span>Low 🎉</span>
+            </div>
+            <div class="mood-bar">
+              <div class="mood-bar-fill" style="width: 35%"></div>
+            </div>
+          </div>
+          <div class="mood-card-footer">
+            ✨ 7-day streak! +10 XP earned
+          </div>
+        </div>
+
+        <div class="floating-badge badge-1">🔒 100% Anonymous</div>
+        <div class="floating-badge badge-2">🧘 AI Wellness Tips</div>
+        <div class="floating-badge badge-3">🏆 Level 5 Unlocked</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Features Overview ────────────────────────────────── -->
+  <section class="section features-showcase">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="badge">WHY MINDWELL?</span>
+        <h2>Everything You Need to <span class="text-gradient">Feel Better</span></h2>
+        <p>Built by students, for students. MindWell brings together cutting-edge mental health tools in one cohesive platform.</p>
+      </div>
+
+      <div class="card-grid">
+        <div class="card reveal delay-1">
+          <div class="card-icon blue">📊</div>
+          <h3>AI Mood Tracking</h3>
+          <p>Track your emotions daily with smart insights. Our AI identifies patterns and triggers to help you understand yourself better.</p>
+        </div>
+        <div class="card reveal delay-2">
+          <div class="card-icon purple">👻</div>
+          <h3>Shadow Mode</h3>
+          <p>Talk anonymously. Our Shadow Chat lets you share, vent, and connect without ever revealing your identity.</p>
+        </div>
+        <div class="card reveal delay-3">
+          <div class="card-icon green">🧘</div>
+          <h3>Wellness Tools</h3>
+          <p>Guided breathing exercises, Pomodoro timers, and personalized coping strategies — all built right in.</p>
+        </div>
+        <div class="card reveal delay-4">
+          <div class="card-icon yellow">🏆</div>
+          <h3>Gamification</h3>
+          <p>Earn XP, unlock badges, and build streaks. Making mental health a habit that feels rewarding, not like a chore.</p>
+        </div>
+        <div class="card reveal delay-5">
+          <div class="card-icon purple">🎯</div>
+          <h3>Stress-Point System</h3>
+          <p>Share what's stressing you and get personalized suggestions based on your category and intensity level.</p>
+        </div>
+        <div class="card reveal delay-6">
+          <div class="card-icon blue">📱</div>
+          <h3>Campus-Wide Insights</h3>
+          <p>Admins get aggregated, anonymous analytics to understand campus stress trends and respond proactively.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Story Section 1: Track ───────────────────────────── -->
+  <section class="story-section">
+    <div class="container">
+      <div class="story-grid">
+        <div class="story-content reveal-left">
+          <div class="story-number">1</div>
+          <h2>Track How You <span class="text-gradient">Really</span> Feel</h2>
+          <p>No more guessing. Our daily check-in takes 30 seconds and builds a visual story of your emotional journey over time.</p>
+          <div class="story-features">
+            <div class="story-feature">
+              <div class="icon">😊</div>
+              <div>
+                <h4>5-Point Mood Scale</h4>
+                <p>Simple, non-clinical daily check-in</p>
+              </div>
+            </div>
+            <div class="story-feature">
+              <div class="icon">📈</div>
+              <div>
+                <h4>Visual Mood Chart</h4>
+                <p>See your moods over 30 days at a glance</p>
+              </div>
+            </div>
+            <div class="story-feature">
+              <div class="icon">🔔</div>
+              <div>
+                <h4>Smart Reminders</h4>
+                <p>Gentle nudges to maintain your streak</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="story-visual reveal-right">
+          <div class="story-illustration">📊</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Story Section 2: Share ───────────────────────────── -->
+  <section class="story-section">
+    <div class="container">
+      <div class="story-grid reverse">
+        <div class="story-content reveal-right">
+          <div class="story-number">2</div>
+          <h2>Share Your <span class="text-gradient">Stress</span> Safely</h2>
+          <p>Our stress-point system matches what you're going through with targeted coping strategies and resources.</p>
+          <div class="story-features">
+            <div class="story-feature">
+              <div class="icon">🎯</div>
+              <div>
+                <h4>7 Stress Categories</h4>
+                <p>Exams, social, family, financial, health & more</p>
+              </div>
+            </div>
+            <div class="story-feature">
+              <div class="icon">💡</div>
+              <div>
+                <h4>Personalized Suggestions</h4>
+                <p>Get matched coping strategies instantly</p>
+              </div>
+            </div>
+            <div class="story-feature">
+              <div class="icon">🤫</div>
+              <div>
+                <h4>Optional Anonymity</h4>
+                <p>Share anonymously if you prefer</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="story-visual reveal-left">
+          <div class="story-illustration">🎯</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Story Section 3: Connect ─────────────────────────── -->
+  <section class="story-section">
+    <div class="container">
+      <div class="story-grid">
+        <div class="story-content reveal-left">
+          <div class="story-number">3</div>
+          <h2>Connect with <span class="text-gradient">Peers</span></h2>
+          <p>Shadow Chat lets you talk openly in anonymous rooms. Be a Calm Fox, Brave Owl, or Gentle Bear — your identity, your rules.</p>
+          <div class="story-features">
+            <div class="story-feature">
+              <div class="icon">👻</div>
+              <div>
+                <h4>Shadow Names</h4>
+                <p>Auto-generated anonymous identities</p>
+              </div>
+            </div>
+            <div class="story-feature">
+              <div class="icon">🏠</div>
+              <div>
+                <h4>Topic Rooms</h4>
+                <p>General, venting, study support & more</p>
+              </div>
+            </div>
+            <div class="story-feature">
+              <div class="icon">💜</div>
+              <div>
+                <h4>Real Connection</h4>
+                <p>You're never alone on this platform</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="story-visual reveal-right">
+          <div class="story-illustration">💬</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Stats Bar ────────────────────────────────────────── -->
+  <section class="stats-section">
+    <div class="container">
+      <div class="stats-grid">
+        <div class="stat-item reveal delay-1">
+          <div class="stat-number">10K+</div>
+          <div class="stat-label">Mood Check-ins</div>
+        </div>
+        <div class="stat-item reveal delay-2">
+          <div class="stat-number">500+</div>
+          <div class="stat-label">Active Students</div>
+        </div>
+        <div class="stat-item reveal delay-3">
+          <div class="stat-number">20+</div>
+          <div class="stat-label">Coping Strategies</div>
+        </div>
+        <div class="stat-item reveal delay-4">
+          <div class="stat-number">100%</div>
+          <div class="stat-label">Free Forever</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Testimonials ─────────────────────────────────────── -->
+  <section class="section testimonials-section">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="badge">WHAT STUDENTS SAY</span>
+        <h2>Real Stories, Real <span class="text-gradient">Impact</span></h2>
+      </div>
+
+      <div class="testimonials-grid">
+        <div class="testimonial-card reveal delay-1">
+          <div class="testimonial-stars">★★★★★</div>
+          <blockquote>"MindWell helped me realize my exam stress had a pattern. Once I saw the chart, I started studying differently. My grades actually improved!"</blockquote>
+          <div class="testimonial-author">
+            <div class="testimonial-avatar" style="background: rgba(74,144,226,0.1); color: var(--primary);">🎓</div>
+            <div>
+              <div class="name">Priya K.</div>
+              <div class="role">Engineering Student, 3rd Year</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="testimonial-card reveal delay-2">
+          <div class="testimonial-stars">★★★★★</div>
+          <blockquote>"Shadow Chat is a game-changer. I could finally talk about my anxiety without anyone knowing it was me. The community here genuinely cares."</blockquote>
+          <div class="testimonial-author">
+            <div class="testimonial-avatar" style="background: rgba(167,139,250,0.1); color: var(--secondary);">💬</div>
+            <div>
+              <div class="name">Anonymous User</div>
+              <div class="role">BraveFox42</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="testimonial-card reveal delay-3">
+          <div class="testimonial-stars">★★★★★</div>
+          <blockquote>"The gamification makes me actually want to check in every day. I've maintained a 30-day streak and my mental health has never been better."</blockquote>
+          <div class="testimonial-author">
+            <div class="testimonial-avatar" style="background: rgba(52,211,153,0.1); color: var(--accent);">🏆</div>
+            <div>
+              <div class="name">Marcus L.</div>
+              <div class="role">Psychology Student, 2nd Year</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── CTA ──────────────────────────────────────────────── -->
+  <section class="cta-section">
+    <div class="container">
+      <div class="cta-box reveal-scale">
+        <h2>Ready to Put Your Mind First?</h2>
+        <p>Join thousands of students who are tracking, sharing, and thriving with MindWell. It's free, anonymous, and built for you.</p>
+        <a href="/login.html" class="btn btn-lg">Start Your Journey →</a>
+      </div>
+    </div>
+  </section>
+
+  <script src="/js/main.js"></script>
+</body>
+</html>

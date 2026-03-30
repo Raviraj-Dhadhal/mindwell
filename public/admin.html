@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Panel — MindWell</title>
+  <meta name="description" content="MindWell admin panel — manage users, view activity logs, and analyze stress reports.">
+  <link rel="stylesheet" href="/css/global.css">
+  <link rel="stylesheet" href="/css/components.css">
+  <link rel="stylesheet" href="/css/pages.css">
+  <script src="/js/auth-guard.js"></script>
+</head>
+<body>
+
+  <div class="page-hero">
+    <div class="container">
+      <span class="badge">ADMIN PANEL</span>
+      <h1>Platform <span class="text-gradient">Administration</span> 🛡️</h1>
+      <p>Overview of users, activity, stress analytics, and platform health.</p>
+    </div>
+  </div>
+
+  <div class="page-content">
+    <section class="section">
+      <div class="container">
+
+        <!-- Stats Overview -->
+        <div class="admin-stats-grid" id="adminStats">
+          <div class="admin-stat-card reveal delay-1">
+            <div class="stat-icon">👥</div>
+            <div class="stat-value" id="sTotalUsers">-</div>
+            <div class="stat-label">Total Users</div>
+          </div>
+          <div class="admin-stat-card reveal delay-2">
+            <div class="stat-icon">😊</div>
+            <div class="stat-value" id="sTotalMood">-</div>
+            <div class="stat-label">Mood Entries</div>
+          </div>
+          <div class="admin-stat-card reveal delay-3">
+            <div class="stat-icon">🎯</div>
+            <div class="stat-value" id="sTotalStress">-</div>
+            <div class="stat-label">Stress Shares</div>
+          </div>
+          <div class="admin-stat-card reveal delay-4">
+            <div class="stat-icon">📈</div>
+            <div class="stat-value" id="sAvgMood">-</div>
+            <div class="stat-label">Avg Mood</div>
+          </div>
+        </div>
+
+        <!-- Tabs -->
+        <div class="admin-tabs">
+          <div class="admin-tab active" onclick="switchAdminTab('users', this)">👥 Users</div>
+          <div class="admin-tab" onclick="switchAdminTab('activity', this)">📋 Activity Log</div>
+          <div class="admin-tab" onclick="switchAdminTab('stress', this)">🎯 Stress Report</div>
+        </div>
+
+        <!-- Users Panel -->
+        <div class="admin-panel active" id="panel-users">
+          <table class="admin-table">
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Username</th>
+                <th>Email</th>
+                <th>Role</th>
+                <th>Joined</th>
+              </tr>
+            </thead>
+            <tbody id="usersTableBody">
+              <tr><td colspan="5" class="empty-state">Loading...</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- Activity Panel -->
+        <div class="admin-panel" id="panel-activity">
+          <table class="admin-table">
+            <thead>
+              <tr>
+                <th>Time</th>
+                <th>User</th>
+                <th>Action</th>
+                <th>Details</th>
+              </tr>
+            </thead>
+            <tbody id="activityTableBody">
+              <tr><td colspan="4" class="empty-state">Loading...</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- Stress Report Panel -->
+        <div class="admin-panel" id="panel-stress">
+          <div class="dash-grid" style="grid-template-columns:1fr 1fr;">
+            <div class="dash-card">
+              <h3>📊 Stress by Category</h3>
+              <div id="stressByCategoryChart" style="min-height:200px;"></div>
+            </div>
+            <div class="dash-card">
+              <h3>🔥 High-Stress Alerts</h3>
+              <div style="text-align:center; padding:var(--space-2xl);">
+                <div style="font-size:3rem; font-weight:800; font-family:var(--font-heading);" class="text-gradient" id="highStressCount">0</div>
+                <p>entries with intensity ≥ 8</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+  </div>
+
+  <div class="modal-overlay" id="userDetailModal">
+    <div class="modal modal-lg">
+      <div class="modal-header">
+        <h2 id="modalUserName" style="margin:0;">User Details</h2>
+        <button class="modal-close" onclick="closeUserModal()">✕</button>
+      </div>
+      <div class="modal-body" style="padding-top:var(--space-md);">
+        <div class="admin-modal-grid">
+          <div class="modal-col-main">
+            <h3 style="font-size:1.1rem; margin-bottom:var(--space-md);">📈 Mood & Stress History</h3>
+            <div id="userHistoryList" class="custom-scrollbar" style="max-height: 450px; overflow-y: auto;">
+              <p class="empty-state">Loading history...</p>
+            </div>
+          </div>
+          <div class="modal-col-sidebar">
+            <div style="background:var(--bg-alt); padding:var(--space-md); border-radius:var(--radius-lg); margin-bottom:var(--space-lg);">
+              <h3 style="font-size:1rem; margin-bottom:var(--space-xs);">🛡️ Send Support Note</h3>
+              <p style="font-size: 0.8rem; color: var(--text-muted); margin-bottom: var(--space-sm);">The student will see this note in their dashboard.</p>
+              <div class="form-group">
+                <textarea id="adminNote" class="form-input" rows="3" placeholder="Write a supportive message..." style="font-size:0.9rem;"></textarea>
+              </div>
+              <button class="btn btn-primary btn-sm" style="width: 100%; border-radius:var(--radius-md);" id="sendHelpBtn">Send Support →</button>
+            </div>
+            
+            <div>
+              <h3 style="font-size:1rem; margin-bottom:var(--space-xs);">🔑 Credentials Overview</h3>
+              <div id="userCreds" style="font-size: 0.85rem; color:var(--text-secondary); line-height:1.6;">
+                <!-- Credential info here -->
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="/js/main.js"></script>
+  <script src="/js/admin.js"></script>
+</body>
+</html>

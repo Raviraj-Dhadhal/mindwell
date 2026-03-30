@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login — MindWell</title>
+  <meta name="description" content="Sign in or create your free MindWell account.">
+  <link rel="stylesheet" href="/css/global.css">
+  <link rel="stylesheet" href="/css/components.css">
+  <link rel="stylesheet" href="/css/pages.css">
+</head>
+<body>
+
+  <div class="auth-page">
+    
+    <!-- Premium Visual Side -->
+    <div class="auth-visual">
+      <div class="visual-bg"></div>
+      
+      <div class="visual-content">
+        <div class="visual-logo">
+          <a href="/index.html" style="color: white; text-decoration: none; display: flex; align-items: center; gap: 0.5rem; font-weight: bold; font-size: 1.2rem;">
+            ← Back to Home
+          </a>
+        </div>
+        
+        <div class="visual-text">
+          <h1 style="font-size: 3rem; margin-bottom: 1rem; line-height: 1.1;">Find your<br><span style="color: var(--accent-light);">balance</span> today.</h1>
+          <p style="font-size: 1.1rem; opacity: 0.8; max-width: 400px; line-height: 1.6;">
+            Join thousands of students on a journey to better mental health, focus, and academic success.
+          </p>
+        </div>
+        
+        <div class="visual-pills">
+          <span class="pill">✨ AI Insights</span>
+          <span class="pill">🔒 100% Private</span>
+          <span class="pill">🎓 Student Focused</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Form Side -->
+    <div class="auth-form-side">
+      <div class="auth-container">
+        
+        <div class="auth-header">
+          <div class="logo">🧠</div>
+          <h2>Welcome to MindWell</h2>
+          <p style="color:var(--text-muted); font-size:0.9rem;">Your mind matters. Let's get started.</p>
+        </div>
+
+        <div class="auth-tabs">
+          <div class="auth-tab active" onclick="switchAuthTab('login')" id="loginTab">Log In</div>
+          <div class="auth-tab" onclick="switchAuthTab('signup')" id="signupTab">Sign Up</div>
+        </div>
+
+        <!-- Login Form -->
+        <form class="auth-form active" id="loginForm" onsubmit="handleLogin(event)">
+          <div class="form-group">
+            <label for="loginEmail">Email or Username</label>
+            <input type="text" id="loginEmail" class="form-input" placeholder="you@university.edu" required>
+          </div>
+          <div class="form-group">
+            <label for="loginPassword">Password</label>
+            <input type="password" id="loginPassword" class="form-input" placeholder="••••••••" required>
+          </div>
+          <button type="submit" class="btn btn-primary" style="width:100%;" id="loginBtn">Log In →</button>
+        </form>
+
+        <!-- Signup Form -->
+        <form class="auth-form" id="signupForm" onsubmit="handleSignup(event)">
+          <div class="form-group">
+            <label for="signupUsername">Username</label>
+            <input type="text" id="signupUsername" class="form-input" placeholder="coolstudent42" required minlength="3">
+          </div>
+          <div class="form-group">
+            <label for="signupEmail">Email</label>
+            <input type="email" id="signupEmail" class="form-input" placeholder="you@university.edu" required>
+          </div>
+          <div class="form-group">
+            <label for="signupPassword">Password</label>
+            <input type="password" id="signupPassword" class="form-input" placeholder="At least 6 characters" required minlength="6">
+          </div>
+          <button type="submit" class="btn btn-primary" style="width:100%;" id="signupBtn">Create Account →</button>
+        </form>
+
+        <div class="auth-footer" style="text-align:center; font-size:0.85rem; color:var(--text-muted); margin-top:1.5rem;">
+          <p>🔒 Your data is encrypted and never shared.</p>
+        </div>
+        
+        <div class="mobile-back" style="text-align:center; margin-top:2rem;">
+          <a href="/index.html" style="color:#94A3B8; font-size:0.9rem;">← Back to Home</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="/js/main.js"></script>
+  <script src="/js/login.js"></script>
+</body>
+</html>
