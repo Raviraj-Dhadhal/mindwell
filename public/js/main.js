@@ -125,6 +125,13 @@ function initNavbar() {
             <div class="nav-user auth-only" id="navUser" onclick="toggleUserMenu()">
               <img src="${user ? user.avatar_url : '/assets/default-avatar.svg'}" alt="avatar" id="navAvatar">
               <span id="navUsername">${user ? user.display_name : 'User'}</span>
+
+              <div class="user-dropdown" id="userDropdown">
+                <a href="/profile.html">👤 Profile</a>
+                <a href="/dashboard.html">📊 Dashboard</a>
+                <hr>
+                <a href="#" onclick="logout(); return false;">🚪 Logout</a>
+              </div>
             </div>
           </div>
         </div>
@@ -134,14 +141,6 @@ function initNavbar() {
           <span></span>
           <span></span>
         </div>
-      </div>
-      
-      <!-- User dropdown -->
-      <div class="user-dropdown" id="userDropdown" style="display:none; position:absolute; right:2rem; top:calc(var(--nav-height) - 4px); background:var(--surface); border-radius:var(--radius-md); box-shadow:var(--shadow-lg); padding:var(--space-sm); min-width:180px; z-index:999; border:1px solid var(--border);">
-        <a href="/profile.html" style="display:block; padding:var(--space-sm) var(--space-md); border-radius:var(--radius-sm); color:var(--text);">👤 Profile</a>
-        <a href="/dashboard.html" style="display:block; padding:var(--space-sm) var(--space-md); border-radius:var(--radius-sm); color:var(--text);">📊 Dashboard</a>
-        <hr style="margin:var(--space-xs) 0; border:none; border-top:1px solid var(--border);">
-        <a href="#" onclick="logout(); return false;" style="display:block; padding:var(--space-sm) var(--space-md); border-radius:var(--radius-sm); color:var(--danger);">🚪 Logout</a>
       </div>
     </nav>
   `;
@@ -153,21 +152,43 @@ function initNavbar() {
 function toggleMobileMenu() {
   const toggle = document.getElementById('navToggle');
   const links = document.getElementById('navLinks');
-  toggle.classList.toggle('open');
-  links.classList.toggle('open');
+  const navbar = document.getElementById('navbar');
+  const isOpen = links.classList.toggle('open');
+  toggle.classList.toggle('open', isOpen);
+  navbar.classList.toggle('nav-open', isOpen);
 }
 
 function toggleUserMenu() {
-  const dropdown = document.getElementById('userDropdown');
-  dropdown.style.display = dropdown.style.display === 'none' ? 'block' : 'none';
+  const dropdown = document.getElementById("userDropdown");
+  if (!dropdown) return;
+
+  dropdown.classList.toggle("show");
 }
 
-// Close dropdown when clicking outside
-document.addEventListener('click', (e) => {
-  const dropdown = document.getElementById('userDropdown');
-  const userBtn = document.getElementById('navUser');
-  if (dropdown && userBtn && !userBtn.contains(e.target) && !dropdown.contains(e.target)) {
-    dropdown.style.display = 'none';
+// close when clicking outside
+document.addEventListener("click", function (e) {
+  const dropdown = document.getElementById("userDropdown");
+  const user = document.getElementById("navUser");
+
+  if (!dropdown || !user) return;
+
+  if (!dropdown.contains(e.target) && !user.contains(e.target)) {
+    dropdown.classList.remove("show");
+  }
+});
+
+// ESC key closes
+document.addEventListener("keydown", function (e) {
+  if (e.key === "Escape") {
+    document.getElementById("userDropdown")?.classList.remove("show");
+  }
+});
+
+// Close mobile menu on Escape
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape') {
+    closeMobileMenu();
+    closeUserDropdown();
   }
 });
 
