@@ -85,35 +85,37 @@ body:has(.page-hero) .navbar:not(.scrolled) .nav-logo {
   color: #F9FAFB;
 }
 
-body:has(.page-hero) .navbar:not(.scrolled) .nav-links a {
-  color: #94A3B8;
-}
+@media (min-width: 769px) {
+  body:has(.page-hero) .navbar:not(.scrolled) .nav-links a {
+    color: #94A3B8;
+  }
 
-body:has(.page-hero) .navbar:not(.scrolled) .nav-links a:not(.btn):hover,
-body:has(.page-hero) .navbar:not(.scrolled) .nav-links a:not(.btn).active {
-  color: #F9FAFB;
-  background: rgba(255, 255, 255, 0.08);
+  body:has(.page-hero) .navbar:not(.scrolled) .nav-links a:not(.btn):hover,
+  body:has(.page-hero) .navbar:not(.scrolled) .nav-links a:not(.btn).active {
+    color: #F9FAFB;
+    background: rgba(255, 255, 255, 0.08);
+  }
+
+  body:has(.page-hero) .navbar:not(.scrolled) .nav-user {
+    background: rgba(255, 255, 255, 0.08);
+  }
+
+  body:has(.page-hero) .navbar:not(.scrolled) .nav-user span {
+    color: #F9FAFB;
+  }
+
+  body:has(.page-hero) .navbar:not(.scrolled) .nav-links .nav-auth {
+    border-left-color: rgba(255, 255, 255, 0.1);
+  }
+
+  /* Ensure Login button text is pure white like "Get Started" */
+  body:has(.page-hero) .navbar:not(.scrolled) .nav-links .nav-auth .btn {
+    color: #FFFFFF !important;
+  }
 }
 
 body:has(.page-hero) .navbar:not(.scrolled) .nav-toggle span {
   background: #F9FAFB;
-}
-
-body:has(.page-hero) .navbar:not(.scrolled) .nav-user {
-  background: rgba(255, 255, 255, 0.08);
-}
-
-body:has(.page-hero) .navbar:not(.scrolled) .nav-user span {
-  color: #F9FAFB;
-}
-
-body:has(.page-hero) .navbar:not(.scrolled) .nav-links .nav-auth {
-  border-left-color: rgba(255, 255, 255, 0.1);
-}
-
-/* Ensure Login button text is pure white like "Get Started" */
-body:has(.page-hero) .navbar:not(.scrolled) .nav-links .nav-auth .btn {
-  color: #FFFFFF !important;
 }
 
 /* ── About Page ──────────────────────────────────────────── */
@@ -141,9 +143,15 @@ body:has(.page-hero) .navbar:not(.scrolled) .nav-links .nav-auth .btn {
 }
 
 .team-grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
   gap: var(--space-xl);
+}
+
+.team-member {
+  flex: 0 1 220px;
+  text-align: center;
 }
 
 .team-member {
@@ -657,6 +665,156 @@ body:has(.page-hero) .navbar:not(.scrolled) .nav-links .nav-auth .btn {
   position: relative;
 }
 
+.chart-container-donut {
+  max-width: 320px;
+  margin: 0 auto;
+}
+
+.assessment-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: var(--space-md);
+  margin-bottom: var(--space-lg);
+}
+
+.assessment-subtitle {
+  margin: 0;
+  color: var(--text-secondary);
+  font-size: 0.92rem;
+}
+
+.assessment-pill {
+  white-space: nowrap;
+  padding: var(--space-xs) var(--space-md);
+  border-radius: var(--radius-full);
+  background: var(--primary-bg);
+  color: var(--primary);
+  font-size: 0.8rem;
+  font-weight: 700;
+}
+
+.assessment-questions {
+  display: grid;
+  gap: var(--space-md);
+  margin-bottom: var(--space-lg);
+}
+
+.assessment-question {
+  padding: var(--space-lg);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-lg);
+  background: linear-gradient(180deg, var(--surface) 0%, var(--bg-alt) 100%);
+}
+
+.assessment-question-head {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--space-sm);
+  margin-bottom: var(--space-sm);
+}
+
+.assessment-question-index {
+  color: var(--primary);
+  font-size: 0.8rem;
+  font-weight: 700;
+}
+
+.assessment-question-category {
+  color: var(--text-muted);
+  font-size: 0.8rem;
+  text-align: right;
+}
+
+.assessment-question-title {
+  font-weight: 600;
+  margin-bottom: var(--space-md);
+}
+
+.assessment-options {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--space-sm);
+}
+
+.assessment-option {
+  border: 2px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: var(--space-sm) var(--space-md);
+  background: var(--surface);
+  cursor: pointer;
+  text-align: left;
+  transition: all var(--transition-fast);
+  color: var(--text);
+}
+
+.assessment-option:hover,
+.assessment-option.active {
+  border-color: var(--primary);
+  background: var(--primary-bg);
+}
+
+.assessment-option-key {
+  display: inline-flex;
+  width: 28px;
+  height: 28px;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: var(--bg-alt);
+  margin-right: var(--space-sm);
+  font-size: 0.8rem;
+  font-weight: 700;
+}
+
+.assessment-analytics {
+  display: grid;
+  grid-template-columns: 320px 1fr;
+  gap: var(--space-xl);
+  align-items: center;
+}
+
+.keyword-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--space-sm);
+}
+
+.keyword-card {
+  padding: var(--space-md);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border-light);
+  background: var(--bg-alt);
+}
+
+.keyword-card-label {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  margin-bottom: 4px;
+}
+
+.keyword-card-value {
+  font-size: 1.2rem;
+  font-weight: 800;
+}
+
+.assessment-history {
+  margin-top: var(--space-lg);
+  display: grid;
+  gap: var(--space-sm);
+}
+
+.assessment-history-item {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--space-sm);
+  padding: var(--space-sm) var(--space-md);
+  border-radius: var(--radius-md);
+  background: var(--bg-alt);
+  border: 1px solid var(--border-light);
+  font-size: 0.88rem;
+}
+
 /* Suggestions list */
 .suggestions-list {
   display: flex;
@@ -1033,6 +1191,38 @@ body:has(.page-hero) .navbar:not(.scrolled) .nav-links .nav-auth .btn {
   display: block;
 }
 
+.admin-summary-stack {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--space-md);
+  margin-bottom: var(--space-lg);
+}
+
+.admin-summary-box {
+  padding: var(--space-lg);
+  border-radius: var(--radius-lg);
+  background: var(--bg-alt);
+  border: 1px solid var(--border-light);
+  text-align: center;
+}
+
+.admin-summary-value {
+  font-size: 2rem;
+  font-weight: 800;
+  font-family: var(--font-heading);
+}
+
+.admin-summary-label {
+  font-size: 0.82rem;
+  color: var(--text-muted);
+}
+
+.analytics-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--space-xl);
+}
+
 .admin-table {
   width: 100%;
   border-collapse: collapse;
@@ -1148,10 +1338,6 @@ body:has(.page-hero) .navbar:not(.scrolled) .nav-links .nav-auth .btn {
   .admin-stats-grid {
     grid-template-columns: repeat(2, 1fr);
   }
-
-  .team-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
 }
 
 @media (max-width: 480px) {
@@ -1173,5 +1359,49 @@ body:has(.page-hero) .navbar:not(.scrolled) .nav-links .nav-auth .btn {
 
   .mood-option {
     flex: 0 0 calc(33.333% - var(--space-sm));
+  }
+
+  .assessment-header,
+  .assessment-question-head,
+  .assessment-history-item {
+    flex-direction: column;
+  }
+
+  .assessment-options,
+  .keyword-grid,
+  .admin-summary-stack {
+    grid-template-columns: 1fr;
+  }
+
+  .assessment-analytics {
+    grid-template-columns: 1fr;
+  }
+
+  .analytics-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .chart-container-donut {
+    max-width: 260px;
+  }
+
+  .admin-table {
+    display: block;
+    overflow-x: auto;
+    white-space: nowrap;
+  }
+}
+
+@media (max-width: 768px) {
+  .assessment-question {
+    padding: var(--space-md);
+  }
+
+  .assessment-pill {
+    white-space: normal;
+  }
+
+  .dash-card {
+    padding: var(--space-lg);
   }
 }
