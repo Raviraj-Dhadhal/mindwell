@@ -65,7 +65,14 @@ router.get('/history', authenticateToken, (req, res) => {
       'SELECT "stress" as type, id, category, intensity, description, created_at FROM stress_points WHERE user_id = ? ORDER BY created_at DESC LIMIT 20'
     ).all(id);
 
-    const history = [...moodEntries, ...stressPoints]
+    const assessments = db.prepare(
+      'SELECT "assessment" as type, id, assessment_date, summary_json, created_at FROM daily_assessments WHERE user_id = ? ORDER BY assessment_date DESC LIMIT 20'
+    ).all(id).map(item => ({
+      ...item,
+      summary: JSON.parse(item.summary_json)
+    }));
+
+    const history = [...moodEntries, ...stressPoints, ...assessments]
       .sort((a, b) => new Date(b.created_at) - new Date(a.created_at))
       .slice(0, 20);
 

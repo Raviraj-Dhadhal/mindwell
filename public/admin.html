@@ -53,6 +53,7 @@
           <div class="admin-tab active" onclick="switchAdminTab('users', this)">👥 Users</div>
           <div class="admin-tab" onclick="switchAdminTab('activity', this)">📋 Activity Log</div>
           <div class="admin-tab" onclick="switchAdminTab('stress', this)">🎯 Stress Report</div>
+          <div class="admin-tab" onclick="switchAdminTab('assessment', this)">🧠 Mind Scan</div>
         </div>
 
         <!-- Users Panel -->
@@ -65,10 +66,11 @@
                 <th>Email</th>
                 <th>Role</th>
                 <th>Joined</th>
+                <th>Action</th>
               </tr>
             </thead>
             <tbody id="usersTableBody">
-              <tr><td colspan="5" class="empty-state">Loading...</td></tr>
+              <tr><td colspan="6" class="empty-state">Loading...</td></tr>
             </tbody>
           </table>
         </div>
@@ -92,7 +94,7 @@
 
         <!-- Stress Report Panel -->
         <div class="admin-panel" id="panel-stress">
-          <div class="dash-grid" style="grid-template-columns:1fr 1fr;">
+          <div class="analytics-grid">
             <div class="dash-card">
               <h3>📊 Stress by Category</h3>
               <div id="stressByCategoryChart" style="min-height:200px;"></div>
@@ -102,6 +104,33 @@
               <div style="text-align:center; padding:var(--space-2xl);">
                 <div style="font-size:3rem; font-weight:800; font-family:var(--font-heading);" class="text-gradient" id="highStressCount">0</div>
                 <p>entries with intensity ≥ 8</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="admin-panel" id="panel-assessment">
+          <div class="analytics-grid">
+            <div class="dash-card">
+              <h3>🧠 Keyword Trend Snapshot</h3>
+              <div class="chart-container chart-container-donut">
+                <canvas id="adminAssessmentChart"></canvas>
+              </div>
+            </div>
+            <div class="dash-card">
+              <h3>📌 Daily Reflection Coverage</h3>
+              <div class="admin-summary-stack">
+                <div class="admin-summary-box">
+                  <div class="admin-summary-value" id="assessmentTotal">0</div>
+                  <div class="admin-summary-label">Total submissions analyzed</div>
+                </div>
+                <div class="admin-summary-box">
+                  <div class="admin-summary-value" id="assessmentToday">0</div>
+                  <div class="admin-summary-label">Submitted today</div>
+                </div>
+              </div>
+              <div class="keyword-grid" id="adminKeywordGrid">
+                <p class="empty-state">No assessment data yet.</p>
               </div>
             </div>
           </div>
@@ -148,6 +177,7 @@
   </div>
 
   <script src="/js/main.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
   <script src="/js/admin.js"></script>
 </body>
 </html>

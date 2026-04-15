@@ -28,6 +28,22 @@
           <!-- ── Main Column ──────────────────────────────── -->
           <div class="dash-main">
 
+            <div class="dash-card reveal">
+              <div class="assessment-header">
+                <div>
+                  <h3>🧠 Daily Mind Scan</h3>
+                  <p class="assessment-subtitle">Answer 15 rotating questions each day so we can map patterns like stress, happiness, focus, and overload.</p>
+                </div>
+                <div class="assessment-pill" id="assessmentStatus">Loading...</div>
+              </div>
+              <div id="assessmentForm">
+                <div id="assessmentQuestions" class="assessment-questions">
+                  <p class="empty-state">Loading your questions...</p>
+                </div>
+                <button class="btn btn-primary" onclick="submitAssessment()" id="assessmentSubmitBtn">Save Daily Reflection →</button>
+              </div>
+            </div>
+
             <!-- Mood Check-in -->
             <div class="dash-card reveal">
               <h3>😊 Daily Mood Check-In</h3>
@@ -64,6 +80,28 @@
               <h3>📈 Mood History (Last 30 Days)</h3>
               <div class="chart-container">
                 <canvas id="moodChart"></canvas>
+              </div>
+            </div>
+
+            <div class="dash-card reveal">
+              <div class="assessment-header">
+                <div>
+                  <h3>🌀 Round Graph Analysis</h3>
+                  <p class="assessment-subtitle">Your latest answer pattern is converted into keywords so both you and the admin can understand your mental load.</p>
+                </div>
+              </div>
+              <div class="assessment-analytics">
+                <div class="chart-container chart-container-donut">
+                  <canvas id="assessmentChart"></canvas>
+                </div>
+                <div>
+                  <div class="keyword-grid" id="keywordGrid">
+                    <p class="empty-state">Complete today's reflection to see your keyword breakdown.</p>
+                  </div>
+                  <div class="assessment-history" id="assessmentHistory">
+                    <p class="empty-state">No daily reflections yet.</p>
+                  </div>
+                </div>
               </div>
             </div>
 

@@ -24,6 +24,7 @@ app.use('/api/auth', require('./routes/auth'));
 app.use('/api/profile', require('./routes/profile'));
 app.use('/api/mood', require('./routes/mood'));
 app.use('/api/stress', require('./routes/stress'));
+app.use('/api/assessment', require('./routes/assessment'));
 app.use('/api/community', require('./routes/community'));
 app.use('/api/admin', require('./routes/admin'));
 

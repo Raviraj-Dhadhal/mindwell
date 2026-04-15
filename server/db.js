@@ -93,6 +93,30 @@ db.exec(`
     FOREIGN KEY (user_id) REFERENCES users(id),
     FOREIGN KEY (admin_id) REFERENCES users(id)
   );
+
+  CREATE TABLE IF NOT EXISTS daily_assessments (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    user_id INTEGER NOT NULL,
+    assessment_date DATE NOT NULL,
+    question_count INTEGER NOT NULL DEFAULT 15,
+    summary_json TEXT NOT NULL,
+    completed_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+    created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (user_id) REFERENCES users(id),
+    UNIQUE(user_id, assessment_date)
+  );
+
+  CREATE TABLE IF NOT EXISTS daily_assessment_answers (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    assessment_id INTEGER NOT NULL,
+    question_id TEXT NOT NULL,
+    question_text TEXT NOT NULL,
+    option_key TEXT NOT NULL,
+    option_text TEXT NOT NULL,
+    category TEXT NOT NULL,
+    created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (assessment_id) REFERENCES daily_assessments(id) ON DELETE CASCADE
+  );
 `);
 
 // ── Seed default suggestions ───────────────────────────────────

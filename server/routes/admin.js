@@ -58,6 +58,43 @@ router.get('/stress-report', (req, res) => {
   }
 });
 
+router.get('/assessment-report', (req, res) => {
+  try {
+    const rows = db.prepare(
+      'SELECT summary_json, assessment_date FROM daily_assessments ORDER BY assessment_date DESC LIMIT 100'
+    ).all();
+
+    const today = new Date().toISOString().slice(0, 10);
+    const keywordTotals = {};
+    let submissionsToday = 0;
+
+    for (const row of rows) {
+      const summary = JSON.parse(row.summary_json);
+      if (row.assessment_date === today) submissionsToday++;
+      for (const keyword of summary.keywordPercentages || []) {
+        keywordTotals[keyword.label] = (keywordTotals[keyword.label] || 0) + keyword.percentage;
+      }
+    }
+
+    const keywords = Object.entries(keywordTotals)
+      .map(([label, total]) => ({
+        label,
+        average: rows.length ? Math.round(total / rows.length) : 0
+      }))
+      .sort((a, b) => b.average - a.average)
+      .slice(0, 8);
+
+    res.json({
+      totalAssessments: rows.length,
+      submissionsToday,
+      keywords
+    });
+  } catch (err) {
+    console.error('Assessment report error:', err);
+    res.status(500).json({ error: 'Server error.' });
+  }
+});
+
 // ── Dashboard Stats ────────────────────────────────────────────
 router.get('/stats', (req, res) => {
   try {
@@ -100,8 +137,10 @@ router.get('/user-details/:id', (req, res) => {
     // Combined History fetch
     const moodHistory = db.prepare("SELECT 'mood' as type, id, mood_score, emoji, note, created_at FROM mood_entries WHERE user_id = ?").all(id);
     const stressHistory = db.prepare("SELECT 'stress' as type, id, category, intensity, description, created_at FROM stress_points WHERE user_id = ?").all(id);
+    const assessmentHistory = db.prepare("SELECT 'assessment' as type, id, assessment_date, summary_json, created_at FROM daily_assessments WHERE user_id = ?").all(id)
+      .map(item => ({ ...item, summary: JSON.parse(item.summary_json) }));
 
-    const history = [...moodHistory, ...stressHistory]
+    const history = [...moodHistory, ...stressHistory, ...assessmentHistory]
       .sort((a,b) => new Date(b.created_at) - new Date(a.created_at))
       .slice(0, 50);
 
